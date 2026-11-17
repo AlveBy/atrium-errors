@@ -1,0 +1,64 @@
+{
+    "name": "alveby/atrium-errors",
+    "description": "Error tracking for Atrium: PHP, queue, schedule and browser errors grouped into issues in the site's own database, with Sentry, GlitchTip or any other service as an extra or a replacement",
+    "type": "atrium-module",
+    "license": "MIT",
+    "homepage": "https://github.com/AlveBy/atrium",
+    "support": {
+        "issues": "https://github.com/AlveBy/atrium/issues",
+        "source": "https://github.com/AlveBy/atrium"
+    },
+    "keywords": [
+        "laravel",
+        "admin",
+        "errors",
+        "exceptions",
+        "error-tracking",
+        "sentry",
+        "glitchtip",
+        "monitoring"
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^13.0",
+        "alveby/atrium": "^0.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^12.5"
+    },
+    "suggest": {
+        "sentry/sentry-laravel": "The official Sentry SDK, for tracing and profiling on top of what the sentry driver sends",
+        "alveby/atrium-mail": "Sends the alert letters through the account picked for the \"errors\" purpose"
+    },
+    "autoload": {
+        "psr-4": {
+            "Atrium\\Errors\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Atrium\\Errors\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "atrium": {
+            "migrations": "database/migrations",
+            "settings": "Atrium\\Errors\\ErrorsSettings",
+            "permissions": {
+                "view": {"label": "atrium-errors::errors.permissions.view", "with": "errors.settings"}
+            },
+            "title": "atrium-errors::errors.title"
+        },
+        "laravel": {
+            "providers": [
+                "Atrium\\Errors\\ErrorsServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
